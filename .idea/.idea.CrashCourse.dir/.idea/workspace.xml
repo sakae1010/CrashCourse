@@ -8,16 +8,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f9923e7-2811-4182-8f29-eb19d7ff72c3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.CrashCourse.dir/.idea/.name" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.CrashCourse.dir/.idea/copilot.data.migration.ask2agent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.CrashCourse.dir/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.CrashCourse.dir/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.CrashCourse.dir/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/CrashCourse/Private/Character/CC_BaseCharacter.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/CrashCourse/Private/Character/CC_PlayerCharacter.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/CrashCourse/Public/Character/CC_BaseCharacter.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/CrashCourse/Public/Character/CC_PlayerCharacter.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/CrashCourse/Private/Player/CC_PlayerController.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/CrashCourse/Public/Player/CC_PlayerController.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CrashCourse.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CrashCourse.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/CrashCourse/Game/BP_CrashGameMode.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/CrashCourse/Game/BP_CrashGameMode.uasset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +23,15 @@
       <entry key="_D:/UnrealProject/CrashCourse_57" value="3AD9G00IEIKkYVQBQIRbjgE5wB6" />
     </persistenceIdMap>
   </component>
+  <component name="CopilotUserSelectedModel">
+    <selectedModels>
+      <entry key="chat-panel" value="Claude Sonnet 4.6" />
+      <entry key="agent-panel" value="Claude Sonnet 4.6" />
+    </selectedModels>
+  </component>
+  <component name="DpaMonitoringSettings">
+    <option name="firstShow" value="false" />
+  </component>
   <component name="EmbeddingIndexingInfo">
     <option name="cachedIndexableFilesCount" value="2160" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
@@ -37,10 +40,13 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="cidr-memory-view://1" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/CrashCourse/Private/Character/CC_BaseCharacter.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/CrashCourse/Private/Character/CC_PlayerCharacter.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/CrashCourse/Private/Player/CC_PlayerController.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/CrashCourse/Public/Character/CC_BaseCharacter.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/CrashCourse/Public/Character/CC_PlayerCharacter.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/CrashCourse/Public/Player/CC_PlayerController.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -68,6 +74,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Uproject.CrashCourse.executor": "Debug",
     "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -161,7 +168,7 @@
       <option name="presentableId" value="Default" />
       <updated>1772116176514</updated>
       <workItem from="1772116178038" duration="456000" />
-      <workItem from="1772116851440" duration="875000" />
+      <workItem from="1772116851440" duration="4703000" />
     </task>
     <servers />
   </component>
