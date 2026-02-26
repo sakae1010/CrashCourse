@@ -25,6 +25,7 @@ void ACC_PlayerController::SetupInputComponent()
 	EnhanceInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered , this , &ThisClass::Move );
 	EnhanceInputComponent->BindAction(LookAction, ETriggerEvent::Triggered ,this , &ThisClass::Look );
 	
+	EnhanceInputComponent->BindAction(PrimaryAction, ETriggerEvent::Started , this , &ThisClass::Primary );
 }
 
 void ACC_PlayerController::Jump()
@@ -66,4 +67,9 @@ void ACC_PlayerController::Look(const FInputActionValue& Value)
 	const FVector2D LookVector = Value.Get<FVector2D>();
 	AddYawInput(LookVector.X);
 	AddPitchInput(LookVector.Y);
+}
+
+void ACC_PlayerController::Primary()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Primary"));
 }
