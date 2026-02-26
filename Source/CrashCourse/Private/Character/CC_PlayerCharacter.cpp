@@ -35,6 +35,6 @@ ACC_PlayerCharacter::ACC_PlayerCharacter()
 	
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>("FollowCamera");
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
-	CameraBoom->bUsePawnControlRotation = false;
+	FollowCamera->bUsePawnControlRotation = false;
 	
 }
