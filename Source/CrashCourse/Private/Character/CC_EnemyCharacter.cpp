@@ -2,13 +2,13 @@
 
 
 #include "Character/CC_EnemyCharacter.h"
-#include "AbilitySystemComponent.h"
+#include "AbilitySystem/CC_AbilitySystemComponent.h"
 
 
 ACC_EnemyCharacter::ACC_EnemyCharacter()
 {
 	PrimaryActorTick.bCanEverTick = false;
-	AbilitySystemComponent = CreateDefaultSubobject<UAbilitySystemComponent>("AbilitySystemComponent");	
+	AbilitySystemComponent = CreateDefaultSubobject<UCC_AbilitySystemComponent>("AbilitySystemComponent");	
 	AbilitySystemComponent->SetIsReplicated(true);
 	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
 }
