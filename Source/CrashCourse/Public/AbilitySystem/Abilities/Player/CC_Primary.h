@@ -16,8 +16,15 @@ class CRASHCOURSE_API UCC_Primary : public UCC_GameplayAbility
 	
 public:
 	UFUNCTION(BlueprintCallable , Category = "Crash|Abilities")
-	void HitBoxOverlapTest();
+	TArray<AActor*> HitBoxOverlapTest();
+	
+	UFUNCTION(BlueprintCallable , Category = "Crash|Abilities")
+	void SendHitReactEventToActors(const TArray<AActor*>& ActorsHit);
+	
 private:
+	
+	void DrawHitBox(const 	TArray<FOverlapResult>& OverlapResults , const FVector& HitBoxLocation) const;
+	
 	UPROPERTY(EditDefaultsOnly, Category= "Crash|Abilities")
 	float HitBoxRadius = 100.0f;
 	
