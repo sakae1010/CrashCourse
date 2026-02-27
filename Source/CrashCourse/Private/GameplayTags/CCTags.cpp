@@ -9,4 +9,11 @@ namespace CCTags
 		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Secondary, "CCTags.CCAbilities.Secondary", "tag for the Secondary Ability" )
 		UE_DEFINE_GAMEPLAY_TAG_COMMENT(Tertiary, "CCTags.CCAbilities.Tertiary", "tag for the Tertiary Ability" )
 	}
+	namespace Events
+	{
+		namespace Enemy
+		{
+			UE_DEFINE_GAMEPLAY_TAG_COMMENT(HitReact, "CCTags.Event.Enemy.HitReact", "tag for the EnemyHit" )
+		}
+	}
 }

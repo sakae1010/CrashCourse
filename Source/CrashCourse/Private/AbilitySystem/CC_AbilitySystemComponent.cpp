@@ -6,11 +6,6 @@
 #include "GameplayTags/CCTags.h"
 
 
-UCC_AbilitySystemComponent::UCC_AbilitySystemComponent()
-{
-	PrimaryComponentTick.bCanEverTick = true;
-}
-
 void UCC_AbilitySystemComponent::OnGiveAbility(FGameplayAbilitySpec& AbilitySpec)
 {
 	Super::OnGiveAbility(AbilitySpec);
