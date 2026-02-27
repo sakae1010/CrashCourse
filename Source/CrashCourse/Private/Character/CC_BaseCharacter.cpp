@@ -2,6 +2,10 @@
 
 
 #include "CrashCourse/Public/Character/CC_BaseCharacter.h"
+
+#include "AbilitySystemComponent.h"
+#include "GameplayAbilitySpec.h"
+
 ACC_BaseCharacter::ACC_BaseCharacter()
 {
 	PrimaryActorTick.bCanEverTick = false;
@@ -14,4 +18,16 @@ ACC_BaseCharacter::ACC_BaseCharacter()
 UAbilitySystemComponent* ACC_BaseCharacter::GetAbilitySystemComponent() const
 {
 	return nullptr;
+}
+
+void ACC_BaseCharacter::GiveStartAbilities()
+{
+	if (!IsValid(GetAbilitySystemComponent())) return;
+	
+	 for (const TSubclassOf<UGameplayAbility>& Ability : StartAbilities)
+	 {
+		if (Ability == nullptr)	return;	
+	 	FGameplayAbilitySpec AbilitySpec = FGameplayAbilitySpec(Ability);
+	 	GetAbilitySystemComponent()->GiveAbility(AbilitySpec);
+	 }
 }
