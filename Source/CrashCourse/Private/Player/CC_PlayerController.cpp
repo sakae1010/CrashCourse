@@ -28,7 +28,7 @@ void ACC_PlayerController::SetupInputComponent()
 	EnhanceInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered , this , &ThisClass::Move );
 	EnhanceInputComponent->BindAction(LookAction, ETriggerEvent::Triggered ,this , &ThisClass::Look );
 	
-	EnhanceInputComponent->BindAction(PrimaryAction, ETriggerEvent::Started , this , &ThisClass::Primary );
+	EnhanceInputComponent->BindAction(PrimaryAction, ETriggerEvent::Triggered , this , &ThisClass::Primary );
 	EnhanceInputComponent->BindAction(SecondaryAction, ETriggerEvent::Started , this , &ThisClass::Secondary );
 	EnhanceInputComponent->BindAction(TertiaryAction, ETriggerEvent::Started , this , &ThisClass::Tertiary );
 	
