@@ -3,10 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "AttributeSet.h"
 #include "Components/WidgetComponent.h"
 #include "CC_WidgetComponent.generated.h"
 
-class UAttributeSet;
+struct FGameplayAttribute;
 class UAbilitySystemComponent;
 class UCC_AttributeSet;
 class UCC_AbilitySystemComponent;
@@ -19,6 +20,9 @@ class CRASHCOURSE_API UCC_WidgetComponent : public UWidgetComponent
 
 
 protected:
+	UPROPERTY(EditAnywhere,Category= "Crash|Attributes")
+	TMap<FGameplayAttribute,FGameplayAttribute> AttributeMap;
+	
 	// Called when the game starts
 	virtual void BeginPlay() override;
 private:
@@ -29,7 +33,7 @@ private:
 	void InitAbilitySystemSet();
 	bool IsASCInitialed() const;
 	void InitializeAttributeDelegate();
-
+	void BindWidgetToAttributeChanges(UWidget* WidgetObject, const TTuple<FGameplayAttribute, FGameplayAttribute>& Pair) const;
 	UFUNCTION()
 	void OnASCInitialed(UAbilitySystemComponent* ASC, UAttributeSet* AS);
 	
