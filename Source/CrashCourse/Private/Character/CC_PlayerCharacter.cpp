@@ -43,9 +43,16 @@ ACC_PlayerCharacter::ACC_PlayerCharacter()
 
 UAbilitySystemComponent* ACC_PlayerCharacter::GetAbilitySystemComponent() const
 {
-	ACC_PlayerState* CCPlayerState = GetPlayerState<ACC_PlayerState>();
+	const ACC_PlayerState* CCPlayerState = GetPlayerState<ACC_PlayerState>();
 	if (!IsValid(CCPlayerState)) return nullptr;
 	return CCPlayerState->GetAbilitySystemComponent();
+}
+
+UAttributeSet* ACC_PlayerCharacter::GetAttributeSet() const
+{
+	const ACC_PlayerState* CCPlayerState = GetPlayerState<ACC_PlayerState>();
+	if (!IsValid(CCPlayerState)) return nullptr;
+	return CCPlayerState->GetAttributeSet();
 }
 
 void ACC_PlayerCharacter::PossessedBy(AController* NewController)
@@ -55,6 +62,7 @@ void ACC_PlayerCharacter::PossessedBy(AController* NewController)
 	if (!IsValid(GetAbilitySystemComponent()) || !HasAuthority()) return;
 	
 	GetAbilitySystemComponent()->InitAbilityActorInfo(GetPlayerState(),this);
+	OnASCInitialed.Broadcast(GetAbilitySystemComponent(),GetAttributeSet());
 	GiveStartAbilities();
 	InitializeAttributes();
 }
@@ -66,4 +74,5 @@ void ACC_PlayerCharacter::OnRep_PlayerState()
 	if (!IsValid(GetAbilitySystemComponent())) return;
 	
 	GetAbilitySystemComponent()->InitAbilityActorInfo(GetPlayerState(),this);
+	OnASCInitialed.Broadcast(GetAbilitySystemComponent(),GetAttributeSet());
 }

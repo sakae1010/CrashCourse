@@ -20,6 +20,11 @@ UAbilitySystemComponent* ACC_BaseCharacter::GetAbilitySystemComponent() const
 	return nullptr;
 }
 
+UAttributeSet* ACC_BaseCharacter::GetAttributeSet() const
+{
+	return nullptr;
+}
+
 void ACC_BaseCharacter::GiveStartAbilities()
 {
 	if (!IsValid(GetAbilitySystemComponent())) return;
@@ -36,8 +41,8 @@ void ACC_BaseCharacter::InitializeAttributes()
 {
 	checkf(IsValid(InitializeAttributesEffect),TEXT("InitializeAttributesEffect is not set."));
 
-	FGameplayEffectContextHandle ContextHandle = GetAbilitySystemComponent()->MakeEffectContext();
-	FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(InitializeAttributesEffect,1,ContextHandle);
+	const FGameplayEffectContextHandle ContextHandle = GetAbilitySystemComponent()->MakeEffectContext();
+	const FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(InitializeAttributesEffect,1,ContextHandle);
 	GetAbilitySystemComponent()->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data.Get());
 	
 	

@@ -9,6 +9,9 @@
 
 class UGameplayEffect;
 class UGameplayAbility;
+class UAttributeSet;
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FASCInitialed , UAbilitySystemComponent* ,ASC , UAttributeSet* , AS);
 
 UCLASS(Abstract)
 class CRASHCOURSE_API ACC_BaseCharacter : public ACharacter , public IAbilitySystemInterface
@@ -18,7 +21,10 @@ class CRASHCOURSE_API ACC_BaseCharacter : public ACharacter , public IAbilitySys
 public:
 	ACC_BaseCharacter();
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+	virtual UAttributeSet* GetAttributeSet() const;
 	
+	UPROPERTY(BlueprintAssignable)
+	FASCInitialed OnASCInitialed;
 protected:
 	void GiveStartAbilities();
 	void InitializeAttributes();

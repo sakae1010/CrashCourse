@@ -21,3 +21,8 @@ UAbilitySystemComponent* ACC_PlayerState::GetAbilitySystemComponent() const
 {
 	return AbilitySystemComponent;
 }
+
+UAttributeSet* ACC_PlayerState::GetAttributeSet() const
+{
+	return AttributeSet;
+}
