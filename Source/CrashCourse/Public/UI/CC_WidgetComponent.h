@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "AttributeSet.h"
 #include "Components/WidgetComponent.h"
+#include "Blueprint/WidgetTree.h"
 #include "CC_WidgetComponent.generated.h"
 
 struct FGameplayAttribute;
@@ -12,6 +13,8 @@ class UAbilitySystemComponent;
 class UCC_AttributeSet;
 class UCC_AbilitySystemComponent;
 class ACC_BaseCharacter;
+class UCC_AttributeWidget;
+class UWidget;
 
 UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class CRASHCOURSE_API UCC_WidgetComponent : public UWidgetComponent

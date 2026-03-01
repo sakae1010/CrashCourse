@@ -61,24 +61,27 @@ void UCC_WidgetComponent::OnASCInitialed(UAbilitySystemComponent* ASC, UAttribut
 
 void UCC_WidgetComponent::BindToAttributeChanges()
 {
-	for (const TTuple<FGameplayAttribute,FGameplayAttribute>& Pair : AttributeMap)
+	for (const TTuple<FGameplayAttribute, FGameplayAttribute>& Pair : AttributeMap)
 	{
-		BindWidgetToAttributeChanges(GetUserWidgetObject(),Pair);
+		BindWidgetToAttributeChanges(GetUserWidgetObject(), Pair); // for checking the owned widget object.
 		
-		GetUserWidgetObject()->WidgetTree->ForEachWidget([this,Pair](UWidget* Widget)
+		GetUserWidgetObject()->WidgetTree->ForEachWidget([this, &Pair](UWidget* ChildWidget)
 		{
-			BindWidgetToAttributeChanges(Widget,Pair);
+			BindWidgetToAttributeChanges(ChildWidget, Pair);
 		});
 	}
-	
 }
-void UCC_WidgetComponent::BindWidgetToAttributeChanges(UWidget* WidgetObject,const TTuple<FGameplayAttribute, FGameplayAttribute>& Pair) const
+
+void UCC_WidgetComponent::BindWidgetToAttributeChanges(UWidget* WidgetObject, const TTuple<FGameplayAttribute, FGameplayAttribute>& Pair) const
 {
 	UCC_AttributeWidget* AttributeWidget = Cast<UCC_AttributeWidget>(WidgetObject);
-	if (!IsValid(AttributeWidget)) return;
-	AttributeWidget->OnAttributeChanged(Pair,AttributeSet.Get());
-	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(Pair.Key).AddLambda([this ,AttributeWidget,&Pair](const FGameplayAttribute& Attribute)
+	if (!IsValid(AttributeWidget)) return; // We only care about CC Attribute Widgets
+	if (!AttributeWidget->MatchesAttributes(Pair)) return; // Only subscribe for matching Attributes
+
+	AttributeWidget->OnAttributeChange(Pair, AttributeSet.Get()); // for initial values.
+
+	AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(Pair.Key).AddLambda([this, AttributeWidget, &Pair](const FOnAttributeChangeData& AttributeChangeData)
 	{
-		AttributeWidget->OnAttributeChanged(Pair,AttributeSet.Get());
+		AttributeWidget->OnAttributeChange(Pair, AttributeSet.Get()); // For changes during the game.
 	});
 }
