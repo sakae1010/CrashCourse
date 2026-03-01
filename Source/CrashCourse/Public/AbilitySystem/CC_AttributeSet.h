@@ -12,13 +12,25 @@
 	GAMEPLAYATTRIBUTE_VALUE_GETTER(PropertyName) \
 	GAMEPLAYATTRIBUTE_VALUE_SETTER(PropertyName) \
 	GAMEPLAYATTRIBUTE_VALUE_INITTER(PropertyName)
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FAttributeInitialized);
+
 UCLASS()
 class CRASHCOURSE_API UCC_AttributeSet : public UAttributeSet
 {
 	GENERATED_BODY()
 public:
 	
-	virtual  void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+	virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;
+	
+	UPROPERTY(ReplicatedUsing = OnRep_AttributeSetInitialized)
+	bool bAttributeSetInitialized = false;
+	
+	UPROPERTY(BlueprintAssignable)
+	FAttributeInitialized OnAttributeSetInitialized;
+	UFUNCTION()
+	void OnRep_AttributeSetInitialized();
 	
 	UPROPERTY(BlueprintReadOnly, Category = "Crash|Attributes")
 	FGameplayAttributeData Health;

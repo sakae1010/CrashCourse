@@ -27,9 +27,12 @@ private:
 	TWeakObjectPtr<UCC_AttributeSet> AttributeSet;
 	
 	void InitAbilitySystemSet();
-	
 	bool IsASCInitialed() const;
+	void InitializeAttributeDelegate();
 
 	UFUNCTION()
 	void OnASCInitialed(UAbilitySystemComponent* ASC, UAttributeSet* AS);
+	
+	UFUNCTION()
+	void BindToAttributeChanges();
 };
