@@ -22,6 +22,30 @@ void UCC_AbilitySystemComponent::OnRep_ActivateAbilities()
 		HandleAutoActivatedAbility(AbilitySpec);
 	}
 }
+
+void UCC_AbilitySystemComponent::SetAbilityLevel(TSubclassOf<UGameplayAbility> AbilityClass, int32 Level)
+{
+	if (IsValid(GetAvatarActor()))return;
+	if (!GetAvatarActor()->HasAuthority())return;
+
+	if (FGameplayAbilitySpec* AbilitySpec = FindAbilitySpecFromClass(AbilityClass))
+	{
+		AbilitySpec->Level = Level;
+		MarkAbilitySpecDirty(*AbilitySpec);
+	}
+}
+
+void UCC_AbilitySystemComponent::AddToAbilityLevel(TSubclassOf<UGameplayAbility> AbilityClass, int32 Level)
+{
+	if (IsValid(GetAvatarActor()))return;
+	if (!GetAvatarActor()->HasAuthority())return;
+	if (FGameplayAbilitySpec* AbilitySpec = FindAbilitySpecFromClass(AbilityClass))
+	{
+		AbilitySpec->Level += Level;
+		MarkAbilitySpecDirty(*AbilitySpec);
+	}
+}
+
 void UCC_AbilitySystemComponent::HandleAutoActivatedAbility(const FGameplayAbilitySpec& AbilitySpec)
 {
 	if (!IsValid(AbilitySpec.Ability)) return;
