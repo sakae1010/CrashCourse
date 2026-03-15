@@ -4,6 +4,7 @@
 #include "Character/CC_EnemyCharacter.h"
 #include "AbilitySystem/CC_AbilitySystemComponent.h"
 #include "AbilitySystem/CC_AttributeSet.h"
+#include "GameplayTags/CCTags.h"
 
 
 ACC_EnemyCharacter::ACC_EnemyCharacter()
@@ -39,4 +40,7 @@ void ACC_EnemyCharacter::BeginPlay()
 	GiveStartAbilities();
 	
 	InitializeAttributes();
+	UCC_AttributeSet* CC_AttributeSet = Cast<UCC_AttributeSet>(GetAttributeSet());
+	if (!IsValid(CC_AttributeSet)) return;
+	GetAbilitySystemComponent()->GetGameplayAttributeValueChangeDelegate(CC_AttributeSet->GetHealthAttribute()).AddUObject(this,&ThisClass::OnHealthChanged);
 }

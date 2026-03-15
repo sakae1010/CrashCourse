@@ -4,6 +4,7 @@
 #include "Character/CC_PlayerCharacter.h"
 
 #include "AbilitySystemComponent.h"
+#include "AbilitySystem/CC_AttributeSet.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GameFramework/SpringArmComponent.h"
@@ -65,6 +66,10 @@ void ACC_PlayerCharacter::PossessedBy(AController* NewController)
 	OnASCInitialed.Broadcast(GetAbilitySystemComponent(),GetAttributeSet());
 	GiveStartAbilities();
 	InitializeAttributes();
+
+	const UCC_AttributeSet* CC_AttributeSet = Cast<UCC_AttributeSet>(GetAttributeSet());
+	if (!IsValid(CC_AttributeSet)) return;
+	GetAbilitySystemComponent()->GetGameplayAttributeValueChangeDelegate(CC_AttributeSet->GetHealthAttribute()).AddUObject(this,&ThisClass::OnHealthChanged);
 }
 
 void ACC_PlayerCharacter::OnRep_PlayerState()
