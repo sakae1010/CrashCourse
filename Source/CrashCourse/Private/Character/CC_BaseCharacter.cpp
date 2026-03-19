@@ -69,7 +69,8 @@ void ACC_BaseCharacter::OnHandleDeath()
 	bAlive = false;
 	if (IsValid(GEngine))
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("%s is dead!"),*GetName());
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red,   
+			FString::Printf(TEXT("%s is dead!"), *GetName()));
 	}
 }
 void ACC_BaseCharacter::HandleRespawn()
