@@ -48,12 +48,7 @@ void ACC_BaseCharacter::GiveStartAbilities()
 
 void ACC_BaseCharacter::InitializeAttributes()
 {
-	checkf(IsValid(InitializeAttributesEffect),TEXT("InitializeAttributesEffect is not set."));
-
-	const FGameplayEffectContextHandle ContextHandle = GetAbilitySystemComponent()->MakeEffectContext();
-	const FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(InitializeAttributesEffect,1,ContextHandle);
-	GetAbilitySystemComponent()->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data.Get());
-
+	ApplyEffect(InitializeAttributesEffect.Get());
 }
 
 void ACC_BaseCharacter::OnHealthChanged(const FOnAttributeChangeData& AttributeChangeData)
@@ -73,7 +68,24 @@ void ACC_BaseCharacter::OnHandleDeath()
 			FString::Printf(TEXT("%s is dead!"), *GetName()));
 	}
 }
+
+
+
 void ACC_BaseCharacter::HandleRespawn()
 {
 	bAlive = true;
+	ResetAttributes();
+}
+
+void ACC_BaseCharacter::ResetAttributes()
+{
+	ApplyEffect(ResetAttributesEffect.Get());
+}
+void ACC_BaseCharacter::ApplyEffect(const TSubclassOf<UGameplayEffect> Effect) const
+{
+	checkf (IsValid(Effect) , TEXT("Effect is not set."));
+	
+	const FGameplayEffectContextHandle ContextHandle = GetAbilitySystemComponent()->MakeEffectContext();
+	const FGameplayEffectSpecHandle SpecHandle = GetAbilitySystemComponent()->MakeOutgoingSpec(Effect,1,ContextHandle);
+	GetAbilitySystemComponent()->ApplyGameplayEffectSpecToSelf(*SpecHandle.Data.Get());
 }

@@ -78,3 +78,6 @@ Plugins/**/Intermediate/*
 DerivedDataCache/*
 
 Paragon*
+
+# Developer Plugins
+Plugins/Developer/
