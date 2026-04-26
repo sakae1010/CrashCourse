@@ -74,7 +74,6 @@ void ACC_BaseCharacter::OnHandleDeath()
 void ACC_BaseCharacter::HandleRespawn()
 {
 	bAlive = true;
-	ResetAttributes();
 }
 
 void ACC_BaseCharacter::ResetAttributes()
