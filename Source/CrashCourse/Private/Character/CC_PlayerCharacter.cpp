@@ -29,8 +29,6 @@ ACC_PlayerCharacter::ACC_PlayerCharacter()
 	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f;
 	GetCharacterMovement()->BrakingDecelerationFalling = 1500.f;
 	
-	
-	
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>("CameraBoom");
 	CameraBoom->SetupAttachment(GetRootComponent());
 	CameraBoom->TargetArmLength = 600.0f;
@@ -40,6 +38,7 @@ ACC_PlayerCharacter::ACC_PlayerCharacter()
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 	FollowCamera->bUsePawnControlRotation = false;
 	
+	Tags.Add(CrashTags::Player);
 }
 
 UAbilitySystemComponent* ACC_PlayerCharacter::GetAbilitySystemComponent() const

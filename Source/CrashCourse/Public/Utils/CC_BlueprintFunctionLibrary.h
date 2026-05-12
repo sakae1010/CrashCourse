@@ -15,6 +15,19 @@ enum class EHitDirection : uint8
 	Back    UMETA(DisplayName = "Back"),
 };
 
+USTRUCT(BlueprintType)
+struct FClosetActorWithTagResult
+{
+	GENERATED_BODY()
+	
+	UPROPERTY(BlueprintReadWrite, Category = "Closet Actor")
+	TWeakObjectPtr<AActor> Actor;
+	
+	UPROPERTY(BlueprintReadWrite, Category = "Closet Actor")
+	float Distance{0.0f};
+};
+
+
 UCLASS()
 class CRASHCOURSE_API UCC_BlueprintFunctionLibrary : public UBlueprintFunctionLibrary
 {
@@ -25,4 +38,8 @@ class CRASHCOURSE_API UCC_BlueprintFunctionLibrary : public UBlueprintFunctionLi
 	
 	UFUNCTION(BlueprintPure, Category = "Crash|Utils")
 	static FName GetHitDirectionName(EHitDirection HitDirection);
+	
+	UFUNCTION(BlueprintCallable, Category = "Crash|Utils")
+	static FClosetActorWithTagResult FindClosetActorWithTag(const UObject* WorldContextObject, const FName& Tag, const FVector& Origin, float Radius);
+	
 };
